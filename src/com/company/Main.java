@@ -1,13 +1,23 @@
 package com.company;
 
+import java.util.Arrays;
+import java.util.StringJoiner;
+
 public class Main {
     public static void main(String[] args) {
-        com.thekey.Person p1 = new com.thekey.Person();
-        Person p2 = new Person();
-        Person p3 = new Person();
-        Person p4 = new Person();
-        System.out.println(Person.getCount());
-        System.out.println(com.thekey.Person.getCount());
+        String[] fields = {"name", "position", "salary"};
+        String table = "employee";
+        String select = buildSelectSql(table, fields);
+        System.out.println(select);
+        System.out.println("SELECT name, position, salary FROM employee".equals(select) ? "测试成功" : "测试失败");
+    }
+
+    static String buildSelectSql(String table, String[] fields) {
+        // TODO:
+        StringJoiner sj = new StringJoiner(", ", "SELECT ", " FROM " + table);
+        for (String str : fields) {
+            sj.add(str);
+        }
+        return sj.toString();
     }
 }
-
